@@ -1,675 +1,369 @@
-<!DOCTYPE html>
-<html lang="en-US">
-
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vaibhav Patel</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
-  <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"
-    media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" />
-  </noscript>
-  <link href="css/font-awesome/css/all.min.css?ver=1.2.1" rel="stylesheet">
-  <link href="css/mdb.min.css?ver=1.2.1" rel="stylesheet">
-  <link href="css/main.css?ver=1.2.1" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vaibhav Patel — Front‑End & UI/UX Designer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta name="description" content="Vaibhav Patel — Front-end Developer & UI/UX Designer. Creative portfolio." />
+
+  <style>
+  /* =====================
+     THEME VARIABLES
+  ===================== */
+  :root{
+    /* LIGHT */
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --text:#0f1724;
+    --muted:#6b7280;
+    --accent:#06b6d4;
+    --accent2:#3b82f6;
+    --border:rgba(15,23,36,0.08);
+    --radius:16px;
+    --maxw:1100px;
+  }
+
+  body.dark{
+    /* DARK (your original palette) */
+    --bg:#0f1724;
+    --card:#0b1220;
+    --text:#e6eef7;
+    --muted:#94a3b8;
+    --accent:#06b6d4;
+    --accent2:#3b82f6;
+    --border:rgba(255,255,255,0.08);
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,Arial;
+    background:var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    transition:background .3s ease,color .3s ease;
+  }
+
+  .wrap{max-width:var(--maxw); margin:24px auto; padding:20px}
+
+  /* =====================
+     HEADER / HERO
+  ===================== */
+  .hero-card{
+    background:linear-gradient(180deg, rgba(6,182,212,.08), rgba(59,130,246,.06));
+    border-radius:20px;
+    padding:28px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .hero-card::after{
+    content:"";
+    position:absolute;
+    right:-80px; top:-80px;
+    width:260px; height:260px;
+    background:radial-gradient(circle, rgba(6,182,212,.35), transparent 60%);
+    filter:blur(40px);
+  }
+
+  header{
+    display:flex;
+    align-items:center;
+    gap:20px;
+  }
+
+  .avatar{
+    width:110px; height:110px;
+    border-radius:20px;
+    overflow:hidden;
+    border:5px solid rgba(255,255,255,.7);
+    flex-shrink:0;
+  }
+  .avatar img{width:100%;height:100%;object-fit:cover}
+
+  .hero-text{flex:1}
+
+  h1{
+    font-family:Poppins,sans-serif;
+    margin:0;
+    font-size:26px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .tagline{margin-bottom:14px;margin-top:6px;color:var(--muted);font-size:14px}
+
+  /* theme toggle */
+  .theme-toggle{
+    margin-left:auto;
+    width:44px; height:44px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:var(--card);
+    cursor:pointer;
+    font-size:18px;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    z-index:5;
+  }
+  }
+
+  .hero-actions{
+    margin-top:16px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    padding:10px 16px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:14px;
+    border:1px solid transparent;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    cursor:pointer;
+  }
+
+  .btn.primary{
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    color:#fff;
+  }
+
+  .btn.outline{
+    background:var(--card);
+    border:1px solid var(--border);
+    color:var(--text);
+  }
+
+  .btn.ghost{background:transparent;color:var(--muted)}
+
+  /* =====================
+     LAYOUT
+  ===================== */
+  .content{
+    display:grid;
+    grid-template-columns:1fr 360px;
+    gap:22px;
+    margin-top:22px;
+  }
+
+  @media (max-width:980px){
+    .content{grid-template-columns:1fr}
+  }
+
+  /* =====================
+     CARDS / SECTIONS
+  ===================== */
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:18px;
+    border:1px solid var(--border);
+  }
+
+  .section-title{
+    font-family:Poppins,sans-serif;
+    margin:0 0 10px;
+  }
+
+  .muted{color:var(--muted)}
+
+  /* skills */
+  .skills{display:flex;gap:8px;flex-wrap:wrap}
+  .skill{
+    padding:6px 12px;
+    border-radius:999px;
+    background:linear-gradient(180deg, rgba(6,182,212,.15), rgba(59,130,246,.1));
+    font-weight:600;
+    font-size:13px;
+  }
+
+  /* experience */
+  .job{margin-bottom:14px}
+  .job:last-child{margin-bottom:0}
+
+  /* projects */
+  .projects{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  @media (max-width:520px){
+    .projects{grid-template-columns:1fr}
+  }
+
+  .project{
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:var(--card);
+  }
+
+  .project img{width:100%;height:120px;object-fit:cover}
+  .project-title{padding:10px;font-weight:600;font-size:14px}
+
+  /* sidebar */
+  .sticky{position:sticky;top:20px}
+
+  footer{
+    margin-top:24px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  /* =====================
+     MOBILE HERO
+  ===================== */
+  @media (max-width:520px){
+    header{flex-direction:column;align-items:flex-start}
+    .avatar{width:90px;height:90px}
+    h1{font-size:22px}
+    .theme-toggle{position:absolute;top:20px;right:20px}
+    .btn{width:100%;justify-content:center}
+  }
+  </style>
 </head>
+<body>
 
-<body class="bg-light" id="top">
-  <header class="d-print-none">
-    <div class="container text-center text-lg-left">
-      <div class="pt-4 clearfix">
-        <h1 class="site-title mb-0">Vaibhav Patel</h1>
-        <div class="site-nav">
-          <nav role="navigation">
-            <ul class="nav justify-content-center">
-              <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="scrollToTargetAdjusted('about')" title="About"><span
-                    class="menu-title">About</span></a>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="scrollToTargetAdjusted('skills')" title="Skills"><span
-                    class="menu-title">Skills</span></a>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="scrollToTargetAdjusted('experience')" title="Experience"><span
-                    class="menu-title">Experience</span></a>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="scrollToTargetAdjusted('education')" title="Education"><span
-                    class="menu-title">Education</span></a>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="scrollToTargetAdjusted('portfolio')" title="Portfolio"><span
-                    class="menu-title">Portfolio</span></a>
-              </li>
-              <!-- <li class="nav-item"><a class="nav-link" href="#references" title="References"><span
-                    class="menu-title">References</span></a>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="#contact" title="Contact"><span
-                    class="menu-title">Contact</span></a>
-              </li> -->
-            </ul>
-          </nav>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero-card">
+    <header>
+      <div class="avatar"><img src="images/avatar.jpg" alt="Vaibhav Patel"></div>
+      <div class="hero-text">
+        <h1>
+          Vaibhav Patel
+          <button id="themeToggle" class="theme-toggle">☀️</button>
+        </h1>
+        <div class="tagline">Front‑End Developer • UI/UX & Graphic Designer</div>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="VP-CV.pdf" download>Download CV</a>
+          <a class="btn outline" href="mailto:patelvaibhav27@gmail.com">Send Mail</a>
+          <a class="btn ghost" href="#projects">See Work</a>
         </div>
       </div>
-    </div>
-  </header>
-  <div class="page-content">
-    <div class="container">
-      <div class="resume-container">
-        <div class="shadow-1-strong bg-white my-5" id="intro">
-          <div class="bg-info text-white">
-            <div class="cover bg-image"><img src="images/header-background.jpg" />
-              <div class="mask" style="background-color: rgb(54 54 54);backdrop-filter: blur(2px);">
-                <!-- <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);backdrop-filter: blur(2px);"> -->
-                <div class="text-center p-5">
-                  <div class="avatar p-1"><img class="img-thumbnail shadow-2-strong" src="images/avatar.jpg" width="160"
-                      height="160" /></div>
-                  <div class="header-bio mt-3">
-                    <div>
-                      <h2 class="h1">Vaibhav Patel</h2>
-                      <p>Front-end Developer and Graphic Designer</p>
-                    </div>
-                    <div class="header-social mb-3 d-print-none">
-                      <nav role="navigation">
-                        <ul class="nav justify-content-center">
-                          <li class="nav-item"><a class="nav-link" href="" title="Github"><i
-                                class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-                    <div class="d-print-none"><a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3"
-                        href="VP-CV.pdf">Download CV</a><a class="btn btn-info btn-lg shadow-sm mt-1"
-                        href="#contact">Hire Me</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="shadow-1-strong bg-white my-5 p-5" id="about">
-          <div class="about-section">
-            <div class="row">
-              <div class="col-md-6">
-                <h2 class="h2 fw-light mb-4">About Me</h2>
-                <p>Hello! I’m Vaibhav Patel. I am passionate about Web Development and Web Design. I am a skilled
-                  <strong>Front-End developer</strong> and Expert in AngularJS and Angular 2+ Versions.
-                  I am a quick learner and a team worker that gets the job done.</p>
-                <p>Seeking a fulfulling position and support of all IT needs that offers
-                  growth opportunities and allows me to utilize my leadership skills
-                  and experience to help the organization in all technical ways.</p>
-              </div>
-              <div class="col-md-5 offset-lg-1">
-                <div class="row mt-2">
-                  <h2 class="h2 fw-light mb-4">Bio</h2>
-                  <div class="col-sm-5">
-                    <div class="pb-2 fw-bolder"><i class="far fa-calendar-alt pe-2 text-muted"
-                        style="width:24px;opacity:0.85;"></i> Age</div>
-                  </div>
-                  <div class="col-sm-7">
-                    <div class="pb-2" id="dob-value"></div>
-                  </div>
-                  <div class="col-sm-5">
-                    <div class="pb-2 fw-bolder"><i class="far fa-envelope pe-2 text-muted"
-                        style="width:24px;opacity:0.85;"></i> Email</div>
-                  </div>
-                  <div class="col-sm-7">
-                    <div class="pb-2">patelvaibhav27@gmail.com</div>
-                  </div>
-                  <div class="col-sm-5">
-                    <div class="pb-2 fw-bolder"><i class="fab fa-skype pe-2 text-muted"
-                        style="width:24px;opacity:0.85;"></i> Skype</div>
-                  </div>
-                  <div class="col-sm-7">
-                    <div class="pb-2">patelvaibhav29@hotmail.com</div>
-                  </div>
-                  <div class="col-sm-5">
-                    <div class="pb-2 fw-bolder"><i class="fas fa-phone pe-2 text-muted"
-                        style="width:24px;opacity:0.85;"></i> Phone</div>
-                  </div>
-                  <div class="col-sm-7">
-                    <div class="pb-2">+91 84600 83833</div>
-                  </div>
-                  <div class="col-sm-5">
-                    <div class="pb-2 fw-bolder"><i class="fas fa-map-marker-alt pe-2 text-muted"
-                        style="width:24px;opacity:0.85;"></i> Address</div>
-                  </div>
-                  <div class="col-sm-7">
-                    <div class="pb-2">Air Force 2 Road, Shivam society, Street No 2, Near Yogeshwar Medicle, Jamnagar
-                      361004</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="shadow-1-strong bg-white my-5 p-5" id="skills">
-          <div class="skills-section">
-            <h2 class="h2 fw-light mb-4">Professional Skills</h2>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3"><span class="fw-bolder">JavaScript</span>
-                  <div class="progress my-2 rounded" style="height: 20px">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="75"
-                      aria-valuemin="0" aria-valuemax="100">Advance</div>
-                  </div>
-                </div>
-                <div class="mb-3"><span class="fw-bolder">Jquery</span>
-                  <div class="progress my-2 rounded" style="height: 20px">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="75"
-                      aria-valuemin="0" aria-valuemax="100">Advance</div>
-                  </div>
-                </div>
-                <div class="mb-3"><span class="fw-bolder">HTML</span>
-                  <div class="progress my-2 rounded" style="height: 20px">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 95%;" aria-valuenow="95"
-                      aria-valuemin="0" aria-valuemax="100">Master</div>
-                  </div>
-                </div>
-                <div class="mb-3"><span class="fw-bolder">CSS</span>
-                  <div class="progress my-2 rounded" style="height: 20px">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 85%" aria-valuenow="85"
-                      aria-valuemin="0" aria-valuemax="100">Expert</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3"><span class="fw-bolder">Angular</span>
-                  <div class="progress my-2 rounded" style="height: 20px">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 90%" aria-valuenow="90"
-                      aria-valuemin="0" aria-valuemax="100">Expert</div>
-                  </div>
-                </div>
-                <div class="mb-3"><span class="fw-bolder">Node</span>
-                  <div class="progress my-2 rounded" style="height: 20px">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80"
-                      aria-valuemin="0" aria-valuemax="100">Beginner</div>
-                  </div>
-                </div>
-                <div class="mb-3"><span class="fw-bolder">MongoDB</span>
-                  <div class="progress my-2 rounded" style="height: 20px">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60"
-                      aria-valuemin="0" aria-valuemax="100">Beginner</div>
-                  </div>
-                </div>
-                <div class="mb-3"><span class="fw-bolder">MySql</span>
-                  <div class="progress my-2 rounded" style="height: 20px">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25"
-                      aria-valuemin="0" aria-valuemax="100">Beginner</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="shadow-1-strong bg-white my-5 p-5" id="experience">
-          <div class="work-experience-section">
-            <h2 class="h2 fw-light mb-4">Work Experience</h2>
-            <div class="timeline">
-              <div class="timeline-card timeline-card-info">
-                <div class="timeline-head px-4 pt-3">
-                  <div class="h5">Senior Software Developer <span class="text-muted h6">at Simbiotik Technologies Sdn.
-                      Bhd.</span></div>
-                </div>
-                <div class="timeline-body px-4 pb-4">
-                  <div class="text-muted text-small mb-3">July, 2021 - Present</div>
-                  <div>
-                    My role is to lead a team and provide a bug free result to customer and I'm working on DMS project
-                    using my experience in Angular Technology.My role is to lead a team and provide a bug free result to
-                    customer and I'm working on DMS project using my experience in Angular Technology.
-                    <br />I'm using the below technologies.
-                    <br />✓ Angular
-                    <br />✓ Javascript
-                    <br />✓ API Integration
-                    <br />✓ 3rd Party API
-                  </div>
-                </div>
-              </div>
-              <div class="timeline-card timeline-card-info">
-                <div class="timeline-head px-4 pt-3">
-                  <div class="h5">Software Engineer <span class="text-muted h6">at Codal Systems Pvt. Ltd.</span></div>
-                </div>
-                <div class="timeline-body px-4 pb-4">
-                  <div class="text-muted text-small mb-3">Nov, 2020 - July, 2021</div>
-                  <div>
-                    I have worked with Codal as a Software engineer. I'm working with the Frontend development team.
-                    <br />I'm using the below technologies.
-                    <br />✓ Angular
-                    <br />✓ Javascript
-                    <br />✓ API Integration
-                    <br />✓ Jquery
-                    <br />✓ 3rd Party API
-                  </div>
-                </div>
-              </div>
-              <div class="timeline-card timeline-card-info">
-                <div class="timeline-head px-4 pt-3">
-                  <div class="h5">Frontend developer <span class="text-muted h6">at Green Apex Technolabs</span></div>
-                </div>
-                <div class="timeline-body px-4 pb-4">
-                  <div class="text-muted text-small mb-3">Oct, 2017 - Oct, 2020</div>
-                  <div>
-                    I have worked with Green Apex as a Frontend developer and MEAN stack developer.I have worked with
-                    Green Apex as a Frontend developer and MEAN stack developer.
-                    <br />I'm using the below technologies.
-                    <br />✓ AngularJS and Angular 2+ Versions
-                    <br />✓ Javascript
-                    <br />✓ API Integration
-                    <br />✓ Jquery
-                    <br />✓ NodeJs
-                    <br />✓ Express
-                    <br />✓ MongoDB
-                    <br />✓ Jquery
-                    <br />✓ 3rd Party API
-                  </div>
-                </div>
-              </div>
-              <div class="timeline-card timeline-card-info">
-                <div class="timeline-head px-4 pt-3">
-                  <div class="h5">Web developer <span class="text-muted h6">at NKonnect Infoway</span></div>
-                </div>
-                <div class="timeline-body px-4 pb-4">
-                  <div class="text-muted text-small mb-3"> May, 2016 - Sep 2017</div>
-                  <div>
-                    I have worked with NKonnect Infoway as a web developer.I have worked with NKonnect Infoway as a web
-                    developer.
-                    <br />Skills: HTML5 · AngularJS
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="shadow-1-strong bg-white my-5 p-5" id="education">
-          <div class="education-section">
-            <h2 class="h2 fw-light mb-4">Education</h2>
-            <div class="timeline">
-              <div class="timeline-card timeline-card-success">
-                <div class="timeline-head px-4 pt-3">
-                  <div class="h5">Master Of Computer Application (MCA)
-                    <span class="text-muted h6">
-                      from Atmiya Institute of Technology & Science (MCA)
-                    </span>
-                  </div>
-                </div>
-                <div class="timeline-body px-4 pb-4">
-                  <div class="text-muted text-small mb-3">2014 - 2016</div>
-                </div>
-              </div>
-              <div class="timeline-card timeline-card-success">
-                <div class="timeline-head px-4 pt-3">
-                  <div class="h5">Bachelor of Computer Application (BCA)
-                    <span class="text-muted h6">from S.V.E.T. College (BCA)</span>
-                  </div>
-                </div>
-                <div class="timeline-body px-4 pb-4">
-                  <div class="text-muted text-small mb-3">2011 - 2014</div>
-                </div>
-              </div>
-              <div class="timeline-card timeline-card-success">
-                <div class="timeline-head px-4 pt-3">
-                  <div class="h5">Higher Secondary Certificate (12th)
-                    <span class="text-muted h6">from Brilliant Group of Schools</span>
-                  </div>
-                </div>
-                <div class="timeline-body px-4 pb-4">
-                  <div class="text-muted text-small mb-3">2010 - 2011</div>
-                </div>
-              </div>
-              <div class="timeline-card timeline-card-success">
-                <div class="timeline-head px-4 pt-3">
-                  <div class="h5">Secondary School Certificate (10th)
-                    <span class="text-muted h6">from Brilliant Group of Schools</span>
-                  </div>
-                </div>
-                <div class="timeline-body px-4 pb-4">
-                  <div class="text-muted text-small mb-3">2008 - 2009</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="shadow-1-strong bg-white my-5 p-5 d-print-none" id="portfolio">
-          <div class="portfolio-section">
-            <h2 class="h2 fw-light mb-4">Portfolio</h2>
-            <div class="row g-0 mb-4">
-              <div class="col-md-6"><a href="javascript:void(0)" target="_blank"><img class="img-fluid"
-                    src="images/projects/DMS.png" width="800" height="500" /></a></div>
-              <div class="col-md-6 d-flex align-items-center">
-                <div class="m-4 mt-md-2">
-                  <p class="text-teal text-small">Angular + JAVA</p>
-                  <h3>DMS - Toyota</h3>
-                  <p class="text-muted">
-                  <ul>
-                    <li>DMS can manage brand / Outlets / Users / Permissions / Vehicle
-                      models / Leads / Promo codes etc...</li>
-                    <li>Toyota Users can create Quotations / Invoice etc...</li>
-                    <li>Users can see those things in the Mobile application.</li>
-                    <li>Super users can manage all the permission and user by group
-                      wise. Like service advisor, outlet manager, etc...</li>
-                  </ul>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="row g-0 mb-4">
-              <div class="col-md-6"><a href="javascript:void(0)" target="_blank"><img class="img-fluid"
-                    src="images/projects/ACA.png" width="800" height="500" /></a></div>
-              <div class="col-md-6 d-flex align-items-center">
-                <div class="m-4 mt-md-2">
-                  <p class="text-teal text-small">Angular + .Net</p>
-                  <h3>ACA</h3>
-                  <p class="text-muted">
-                  <ul>
-                    <li>
-                      ACA integrates risk and compliance management activities, trade surveillance and monitoring, compliance program testing, and in-depth analytics to help risk and compliance officers simplify and streamline their compliance management responsibilities.
-                    </li>
-                  </ul>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row g-0 mb-4">
-              <div class="col-md-6"><a href="javascript:void(0)" target="_blank"><img class="img-fluid"
-                    src="images/projects/Scraye.png" width="800" height="500" /></a></div>
-              <div class="col-md-6 d-flex align-items-center">
-                <div class="m-4 mt-md-2">
-                  <p class="text-teal text-small">Angular</p>
-                  <h3>Scraye</h3>
-                  <p class="text-muted">
-                  <ul>
-                    <li>
-                      Scraye is an end-to-end technology platform to make renting homes simple, fast, and transparent.
-                    </li>
-                    <li>
-                      Scraye serve 3 different customers.
-                    </li>
-                    <li>
-                      Agents, Landlords, Tenants.
-                    </li>
-                  </ul>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row g-0 mb-4">
-              <div class="col-md-6"><a href="javascript:void(0)" target="_blank"><img class="img-fluid"
-                    src="images/projects/event-moon.png" width="800" height="500" /></a></div>
-              <div class="col-md-6 d-flex align-items-center">
-                <div class="m-4 mt-md-2">
-                  <p class="text-teal text-small">Angular + Designing</p>
-                  <h3>Event moon</h3>
-                  <p class="text-muted">
-                  <ul>
-                    <li>
-                      Event moon being an interesting platform, lists all type of events i.e., political, cultural,
-                      educational etc that are going to take place across United States.
-                    </li>
-                    <li>
-                      It helps people to track the event details such as amount to be paid for event registration,
-                      place, date and timings etc.
-                    </li>
-                  </ul>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row g-0 mb-4">
-              <div class="col-md-6"><a href="javascript:void(0)" target="_blank"><img class="img-fluid"
-                    src="images/projects/Cobiz.png" width="800" height="500" /></a></div>
-              <div class="col-md-6 d-flex align-items-center">
-                <div class="m-4 mt-md-2">
-                  <p class="text-teal text-small">Angular</p>
-                  <h3>Cobiz</h3>
-                  <p class="text-muted">
-                  <ul>
-                    <li>
-                      It provide work space, business acumen, a sense of community, and opportunities for our members to make a difference in the lives of each other and the local community through diverse programming.
-                    </li>
-                    <li>
-                      Create a vibrant entrepreneurial hub for start-ups, entrepreneurs,
-                      non-profits, creatives, students and local residents to strive in their
-                      professional and personal endeavors.                      
-                    </li>
-                  </ul>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row g-0 mb-4">
-              <div class="col-md-6"><a href="javascript:void(0)" target="_blank"><img class="img-fluid"
-                    src="images/projects/mh-ui.png" width="800" height="500" /></a></div>
-              <div class="col-md-6 d-flex align-items-center">
-                <div class="m-4 mt-md-2">
-                  <p class="text-teal text-small">Angular</p>
-                  <h3>Mh-UI</h3>
-                  <p class="text-muted">
-                  <ul>
-                    <li>
-                      MH is an online medical care appointment booking service,
-                      providing free of charge medical care search facility for end users
-                      by integrating information about medical practices and doctors'
-                      individual schedules in a central location.
-                    </li>
-                    <li>
-                      It solve patient problems, beginning with online appointmentbooking, patient can see doctors’ open appointment times and
-                      book instantly online, make informed choices with verified reviews,
-                      and stay on top of important checkups with tailored reminders.
-                    </li>
-                  </ul>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row g-0 mb-4">
-              <div class="col-md-6"><a href="javascript:void(0)" target="_blank"><img class="img-fluid"
-                    src="images/projects/no-image.png" width="800" height="500" /></a></div>
-              <div class="col-md-6 d-flex align-items-center">
-                <div class="m-4 mt-md-2">
-                  <p class="text-teal text-small">Angular</p>
-                  <h3>Pharme</h3>
-                  <p class="text-muted">
-                  <ul>
-                    <li>
-                      Pharme as name suggests is associated with pharmaceutical domain for Brazil.
-                    </li>
-                    <li>
-                      Here user can search for the medicines needed, add it to cart and order it
-                    </li>
-                    <li>
-                      Also, user can enquire about particular medicine
-                    </li>
-                  </ul>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row g-0 mb-4">
-              <div class="col-md-6"><a href="javascript:void(0)" target="_blank"><img class="img-fluid"
-                    src="images/projects/no-image.png" width="800" height="500" /></a></div>
-              <div class="col-md-6 d-flex align-items-center">
-                <div class="m-4 mt-md-2">
-                  <p class="text-teal text-small">Angular</p>
-                  <h3>Hospice</h3>
-                  <p class="text-muted">
-                  <ul>
-                    <li>
-                      This project is the crm tool for medical purposes only. I have used angular material to create this project.
-                    </li>
-                  </ul>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row g-0 mb-4">
-              <div class="col-md-6"><a href="javascript:void(0)" target="_blank"><img class="img-fluid"
-                    src="images/projects/Corpo.png" width="800" height="500" /></a></div>
-              <div class="col-md-6 d-flex align-items-center">
-                <div class="m-4 mt-md-2">
-                  <p class="text-teal text-small">Angular</p>
-                  <h3>Corpository</h3>
-                  <p class="text-muted">
-                  <ul>
-                    <li>
-                      We have used Angular + java + jasper reports to create different reports which contain detailed company information.
-                    </li>
-                  </ul>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="shadow-1-strong bg-white my-5 p-5" id="references">
-    <div class="reference-section">
-      <h2 class="h2 fw-light mb-4">References</h2>
-      <div class="row"> 
-        <div class="col-md-6">
-          <div class="d-flex mb-2">
-            <div class="avatar"><img src="images/avatar-reference.jpg" width="60" height="60"/></div>
-            <div class="header-bio m-3 mb-0">
-              <h3 class="h6 mb-1">Aiyana</h3>
-              <p class="text-muted text-small">CEO / Web Design Company</p>
-            </div>
-          </div>
-          <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
-            <p class="lead mx-2">Walter displays exemplary professionalism and is able to take on challenges. He learns quickly and is an asset to any team.</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="d-flex mb-2">
-            <div class="avatar"><img src="images/avatar-reference.jpg" width="60" height="60"/></div>
-            <div class="header-bio m-3 mb-0">
-              <h3 class="h6 mb-1">Alexander</h3>
-              <p class="text-muted text-small">Front-end Developer / Web Design Company</p>
-            </div>
-          </div>
-          <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
-            <p class="lead mx-2">Walter is a great co-worker and problem solver. He is quick to extend his helping hand and makes a good team player.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </header>
   </div>
-  <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
-    <div class="contant-section">
-      <h2 class="h2 fw-light text mb-4">Contact</h2>
-      <div class="row mb-4">
-        <div class="col-md-5">
-          <div class="mt-1">
-            <div class="h6"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> +91 99999 99999</div>
-            <div class="h6"><i class="far fa-envelope pe-2 text-muted" style="width:24px;opacity:0.85;"></i> abc@test.com</div>
-          </div>
-          <div class="mt-5 d-print-none"><form action="https://formspree.io/your@email.com"
-    method="POST">
-  <div class="form-outline mb-4">
-    <input type="text" id="name" class="form-control" required/>
-    <label class="form-label" for="name">Name</label>
-  </div>
-  <div class="form-outline mb-4">
-    <input type="email" id="email" class="form-control" required/>
-    <label class="form-label" for="email">Email address</label>
-  </div>
-  <div class="form-outline mb-4">
-    <textarea class="form-control" style="resize: none;" id="message" rows="4" required></textarea>
-    <label class="form-label" for="message">Message</label>
-  </div>
-  <button class="btn btn-info btn-block mb-4" type="submit">Send</button>
-</form>
-          </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <main>
+      <section class="card">
+        <h2 class="section-title">About</h2>
+        <p class="muted">I design and build delightful interfaces and visual identities, combining clean front‑end code with thoughtful UI/UX.</p>
+      </section>
+
+      <section class="card" style="margin-top:12px">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills">
+          <span class="skill">Angular</span>
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">Figma</span>
+          <span class="skill">Photoshop</span>
         </div>
-        <div class="col-md-7 d-print-none"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d496.9774799129763!2d-73.98032087190995!3d40.765927126473905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258f9cfcb250d%3A0xdb570ddcb766e3a8!2sNew%20York%20City%20Center!5e0!3m2!1sen!2sin!4v1614183731149!5m2!1sen!2sin" width="500" height="400" style="border:0;width:100%;" allowfullscreen="" loading="lazy"></iframe></div>
-      </div>
-    </div>
-  </div> -->
-        <div class="shadow-1-strong bg-white my-5 p-5">
-          <div class="about-section">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="slider">
-                  <div class="slide-track">
-                    <div class="slide">
-                      <img src="images/logo/angular.png" alt="ANGULAR">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/bootstrap.png" alt="BOOTSTRAP">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/css.png" alt="CSS">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/express.png" alt="EXPRESS">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/git.png" alt="GIT">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/html.png" alt="HTML">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/jasmine.png" alt="JASMINE">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/javascript.png" alt="JAVASCRIPT">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/jquery.png" alt="JQUERY">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/mdb.png" alt="MDB">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/mongo.png" alt="MONGO">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/mysql.png" alt="MYSQL">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/node.png" alt="NODE">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/react.png" alt="REACT">
-                    </div>
-                    <div class="slide">
-                      <img src="images/logo/typescript.png" alt="TYPESCRIPT">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      </section>
+
+      <section class="card" style="margin-top:12px">
+        <h2 class="section-title">Experience</h2>
+
+        <div class="job">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <strong>Senior Software Developer</strong>
+            <span class="muted">July 2021 — Present</span>
+          </div>
+          <div class="muted" style="margin-top:6px">Simbiotik Technologies Sdn. Bhd.</div>
+          <div class="muted" style="margin-top:6px;font-size:14px">
+            Lead frontend developer for DMS platform. Mentored team, improved performance and accessibility, integrated multiple third-party APIs.
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <footer class="pt-4 pb-4 text-muted text-center d-print-none">
-    <div class="container">
-      <div class="my-3">
-        <div class="h4">Vaibhav Patel</div>
-        <div class="footer-nav">
-          <nav role="navigation">
-            <ul class="nav justify-content-center">
-              <li class="nav-item"><a class="nav-link" href="" title="Github"><i class="fab fa-github"></i><span
-                    class="menu-title sr-only">Github</span></a>
-              </li>
-            </ul>
-          </nav>
+
+        <div class="job" style="margin-top:14px">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <strong>Software Engineer</strong>
+            <span class="muted">Nov 2020 — July 2021</span>
+          </div>
+          <div class="muted" style="margin-top:6px">Codal Systems Pvt. Ltd.</div>
+          <div class="muted" style="margin-top:6px;font-size:14px">
+            Worked on large Angular applications, reusable component libraries, and API integrations.
+          </div>
         </div>
-      </div>
-    </div>
-  </footer>
-  <script src="scripts/mdb.min.js?ver=1.2.1"></script>
-  <script src="scripts/main.js?ver=1.2.1"></script>
+
+        <div class="job" style="margin-top:14px">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <strong>Frontend Developer / MEAN</strong>
+            <span class="muted">Oct 2017 — Oct 2020</span>
+          </div>
+          <div class="muted" style="margin-top:6px">Green Apex Technolabs</div>
+          <div class="muted" style="margin-top:6px;font-size:14px">
+            Built responsive UI, collaborated with backend teams using Node, Express, and MongoDB.
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="card" style="margin-top:12px">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects">
+          <div class="project"><img src="images/projects/DMS.png"><div class="project-title">DMS — Toyota</div></div>
+          <div class="project"><img src="images/projects/ACA.png"><div class="project-title">ACA — Compliance</div></div>
+          <div class="project"><img src="images/projects/Scraye.png"><div class="project-title">Scraye — Rentals</div></div>
+          <div class="project"><img src="images/projects/event-moon.png"><div class="project-title">Event Moon</div></div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="sticky">
+      <section class="card">
+        <h2 class="section-title">Contact</h2>
+        <p class="muted">patelvaibhav27@gmail.com<br>+91 84600 83833<br>Jamnagar, Gujarat</p>
+      </section>
+
+      <section class="card" style="margin-top:12px">
+        <h2 class="section-title">Education</h2>
+        <p class="muted">MCA — Atmiya Institute (2014–2016)</p>
+      </section>
+    </aside>
+
+  </div>
+
+  <footer>© Vaibhav Patel — Front‑End & UI/UX Designer</footer>
+
+</div>
+
+<script>
+(function(){
+  const btn = document.getElementById('themeToggle');
+
+  function applyTheme(mode){
+    document.documentElement.classList.toggle('dark', mode === 'dark');
+    document.body.classList.toggle('dark', mode === 'dark');
+    btn.textContent = mode === 'dark' ? '🌙' : '☀️';
+    localStorage.setItem('vp_theme', mode);
+  }
+
+  const saved = localStorage.getItem('vp_theme') || 'light';
+  applyTheme(saved);
+
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    const isDark = document.body.classList.contains('dark');
+    applyTheme(isDark ? 'light' : 'dark');
+  });
+})();
+</script>
+
 </body>
-
 </html>
